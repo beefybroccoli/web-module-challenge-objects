@@ -131,6 +131,8 @@ Use the getReviewByIndex function below to do the following:
   For example: getReviewByIndex(reviews,0) would return: "Daniela gave the restaurant a 5 star review, and their feedback was: Beautiful atmosphere and wonderful vegan options!"
 */
 
+
+
 function getReviewByIndex(input_array, input_index_number) {
   return `${input_array[input_index_number].name} gave the restaurant a ${input_array[input_index_number].rating} star review, and their feedback was: ${input_array[input_index_number].feedback}`;
 }
