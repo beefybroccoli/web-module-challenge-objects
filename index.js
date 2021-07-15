@@ -13,10 +13,10 @@ The function should:
   2. Create and return an object using the received values 
   
   Example createMenuItem('tacos', 8, 'Lunch') should return {name: 'tacos', price: 8, category: 'Lunch'}
-*/
+  */
 
-function createMenuItem(/*Your code here*/){
-    /*Your code here*/
+function createMenuItem(input_name, input_price, input_category){
+    return {name:input_name, price:input_price, category:input_category}
 }
 
 /* 🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀 Task 1b: 🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀
@@ -28,6 +28,9 @@ Test your createMenuItems function by doing the following:
   
   For example: createMenuItem("pizza",5,"lunch") would return this as the object: {name:"Pizza",price:5,category:"lunch"}
 */
+// console.log (createMenuItem("chicken", 5,"breakfast"));
+// console.log (createMenuItem("beef", 10, "lunch"));
+// console.log (createMenuItem("steak", 20,"dinner"));
 
 
 
@@ -47,9 +50,24 @@ const burger = {
   name: "Burger", 
   price: 18, 
   category: "Lunch", 
+  discount_25_percent: ["teacher", "student","public"],
+  discount_10_percent: ["public"],
+
+  discount:function(input_string) {
+    let discount_price = 0;
+    if (this.discount_10_percent.includes(input_string)) {
+      discount_price = this.price * 0.10;
+    } else if (this.discount_25_percent.includes(input_string)) {
+      discount_price = this.price * 0.25;
+    }
+    return this.price - discount_price;
+  }
   
 }
 
+// console.log("teacher pay " + burger.discount("teacher") + " for a burger");
+// console.log("student pay " + burger.discount("student") + " for a burger");
+// console.log("public pay " + burger.discount("public") + " for a burger");
 
 
 ///////////////Reviews (MVP)///////////////////
@@ -64,11 +82,14 @@ const reviews = [
     {name: "Reyna", rating: 3.5, feedback: ""},
 ]
 
+let temp_key_1 = "Julius";
+let temp_index = reviews.findIndex(element => element.name === temp_key_1);
+// console.log("index = " + temp_index);
 /* 🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀 Task 3: 🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀 
 Using the reviews array above:
   1. log only Julius' feedback to the console - no function needed 
 */
-
+// console.log(reviews[temp_index].feedback);
 
 
 
@@ -78,7 +99,7 @@ Reyna's feedback is missing! Use what you know to do the following: (no function
   2. log the reviews array to the console to check your work
 */
 reviews[7].feedback = 'this place is chill with really cool people, great for getting work done on weekdays';
-console.log(reviews);
+// console.log(reviews);
 
 
 
@@ -92,8 +113,12 @@ Write a function that creates an object with name, rating, feedback, add the new
   4. should return the resulting array
 */
 
-function addReview(/*Your Code Here */){
-  /*Your Code Here */
+// function addReview(input_array, input_feedback, input_name, input_rating){
+//   return input_array.push({"feedback":input_feedback, "name":input_name, "rating":input_rating});
+// }
+
+function addReview(input_array,  input_name, input_rating, input_feedback){
+  return [...input_array, {"name":input_name, "rating":input_rating, "feedback":input_feedback}];
 }
 
 /* 🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀 Task 6: 🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀
@@ -106,13 +131,9 @@ Use the getReviewByIndex function below to do the following:
   For example: getReviewByIndex(reviews,0) would return: "Daniela gave the restaurant a 5 star review, and their feedback was: Beautiful atmosphere and wonderful vegan options!"
 */
 
-
-function getReviewByIndex(/*Your code here*/) {
-  /*Your code here*/
+function getReviewByIndex(input_array, input_index_number) {
+  return `${input_array[input_index_number].name} gave the restaurant a ${input_array[input_index_number].rating} star review, and their feedback was: ${input_array[input_index_number].feedback}`;
 }
-
-
-  
 
 /* 🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀 Task 7: 🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀 
 Write a function to get information about the most recent (last) review called `getLastReview`
@@ -125,9 +146,9 @@ Use the getLastReview function below to do the following:
   For example: getLastReview(reviews) would return: "Reyna gave the restaurant a 3.5 star review, and their feedback was: this place is chill with really cool people, great for getting work done on weekdays".
 */
 
-
-function getLastReview(/*Your code here*/) {
-  /*Your code here*/
+function getLastReview(input_array) {
+  let index = input_array.length-1;
+  return `${input_array[index].name} gave the restaurant a ${input_array[index].rating} star review, and their feedback was: ${input_array[index].feedback}`;
 } 
 
 
